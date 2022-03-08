@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+            <xpath expr="//div[hasclass('orders')]" position="replace">
+             <div class="orders">
+                    <div class="header-row">
+                        <div class="col start wide">Date</div>
+                        <div class="col start wide">Receipt Number</div>
+                        <div class="col start">Customer</div>
+                        <div class="col start wide" t-if="showCardholderName()">Cardholder Name</div>
+                        <div class="col start">Employee</div>
+                        <div class="col end">Total</div>
+                        <div class="col start narrow">Status</div>
+                        <div class="col center very-narrow" name="delete"></div>
+                    </div>
+                    <t t-foreach="filteredOrderList" t-as="order" t-key="order.cid">
+                        <div class="order-row pointer" t-on-click="selectOrder(order)">
+                            <div class="col start wide">
+                                <t t-esc="getDate(order)"></t>
+                            </div>
+                            <div class="col start wide">
+                                <t t-esc="getName(order)"></t>
+                            </div>
+                            <div class="col start">
+                                <t t-esc="getCustomer(order)"></t>
+                            </div>
+                            <div t-if="showCardholderName()" class="col start">
+                                <t t-esc="getCardholderName(order)"></t>
+                            </div>
+                            <div class="col start">
+                                <t t-esc="getEmployee(order)"></t>
+                            </div>
+                            <div class="col end">
+                                <t t-esc="getTotal(order)"></t>
+                            </div>
+                            <div class="col start narrow">
+                                <t t-esc="getStatus(order)"></t>
+                            </div>
+                            <div t-if="!hideDeleteButton(order)" class="col center very-narrow delete-button" name="delete" t-on-click.stop="deleteOrder(order)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </div>
+                            <div t-else="" class="col center very-narrow delete-button"></div>
+                        </div>
+                    </t>
+                </div>
+            </xpath>
+        </t>
+</templates>

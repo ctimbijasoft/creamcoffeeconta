@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="OrderChangeReceipt" t-inherit="pos_restaurant.OrderChangeReceipt" t-inherit-mode="extension" owl="1">
+
+       <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+           <div class="pos-receipt">
+               <p style="text-align: center;"><strong><t t-esc="changes.name" /></strong></p>
+               <table style="margin-left: auto; margin-right: auto;border-collapse:collapse;">
+                    <tbody>
+                    <tr class="border_bottom">
+                        <td style="text-align: center;"><strong>Fecha:</strong></td>
+                        <td style="text-align: center;"><t t-esc='changes.date'/></td>
+                        <td style="text-align: center;">
+                            <span style="text-decoration: underline;">
+                            <strong><t t-esc='changes.time.hours'/>:<t t-esc='changes.time.minutes'/></strong>
+                            </span>
+                        </td>
+                    </tr>
+                        <tr>
+                        <td style="text-align: center;"><strong>#Mesa</strong></td>
+                            <td style="text-align: center;"><strong># Pax</strong></td>
+                            <td style="text-align: center;"><strong>Cajero/Mesero</strong></td>
+                    </tr>
+                        <tr class="border_bottom">
+                        <td style="text-align: center;font-size:40px;">
+                        <strong><t t-esc="changes.table"/></strong>
+                        </td>
+                            <td style="text-align: center;"><t t-esc="changes.customer_count"/></td>
+                            <td style="text-align: center;"><t t-esc="changes.cashier"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+               <t t-if="changes.cancelled.length > 0">
+                    <p style="text-align: center;"><strong>CANCELADO</strong></p>
+                   <t t-foreach="changes.cancelled_categ" t-as="category">
+                       <div style="text-align: left;">
+                           <strong>
+                               <t t-if="category['highlight']==true">
+                                   <table style="border: 1px solid;">
+                                       <tr class="border_bottom" style="padding-right:10px">
+                                           <td>
+                                               <span style="text-decoration: underline;">
+                                                    <t t-esc="category['name']" />
+                                               </span>
+                                           </td>
+                                       </tr>
+                                   </table>
+                               </t>
+                               <t t-if="category['highlight']!=true">
+                                   <t t-esc="category['name']" />
+                               </t>
+                           </strong>
+                       </div>
+                       <t t-foreach="changes.cancelled" t-as="change">
+                           <t t-if="change.pos_categ_id===category['id']">
+                                <div style="text-align: right;">
+                                       <t t-esc="change.qty"/> <t t-esc="change.name"/>
+                               </div>
+
+<!--                               <t t-if="change.note">-->
+<!--                                <div>-->
+<!--                                    NOTE-->
+<!--                                    <span class="pos-receipt-right-align">...</span>-->
+<!--                                </div>-->
+<!--                                   <div><span class="pos-receipt-left-padding">-&#45;&#45; <t t-esc="change.note"/></span></div>-->
+<!--                                   <br/>-->
+<!--                            </t>-->
+                           </t>
+                       </t>
+                   </t>
+                    <p>.</p>
+               </t>
+               <t t-if="changes.new.length > 0">
+                    <p style="text-align: center;"><strong>NUEVO</strong></p>
+                   <t t-foreach="changes.new_categ" t-as="category">
+                       <div style="text-align: left;">
+                           <strong>
+                               <t t-if="category['highlight']==true">
+                                   <table style="border: 1px solid;">
+                                       <tr class="border_bottom" style="padding-right:10px">
+                                           <td>
+                                               <span style="text-decoration: underline;">
+                                                    <t t-esc="category['name']" />
+                                               </span>
+                                           </td>
+                                       </tr>
+                                   </table>
+                               </t>
+                               <t t-if="category['highlight']!=true">
+                                   <t t-esc="category['name']" />
+                               </t>
+                           </strong>
+                       </div>
+                       <t t-foreach="changes.new" t-as="change">
+                           <t t-if="change.pos_categ_id===category['id']">
+                                <div style="text-align: right;">
+                                    <t t-if="category['highlight']==true">
+                                       <font style="text-decoration: underline overline blink;"><t t-esc="change.qty"/>x <t t-esc="change.name"/></font>
+                                    </t>
+                                    <t t-if="category['highlight']==false">
+                                       <t t-esc="change.qty"/> <t t-esc="change.name"/>
+                                    </t>
+                                </div>
+
+                               <t t-if="change.note">
+                                <div style="text-align: right;">
+                                    <span>--- <t t-esc="change.note"/></span>
+                                </div>
+                                   <br/>
+                            </t>
+                           </t>
+                    </t>
+                   </t>
+                   <p>.</p>
+                </t>
+           </div>
+           <p>.</p>
+       </xpath>
+
+    </t>
+
+</templates>

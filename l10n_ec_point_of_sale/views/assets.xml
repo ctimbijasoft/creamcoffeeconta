@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="assets_backend" name="helpdesk assets" inherit_id="web.assets_backend">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/PrinterEncoder.js"></script>
+        </xpath>
+    </template>
+</odoo>

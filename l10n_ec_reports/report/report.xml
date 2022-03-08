@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--    # ATS SRI report    -->
+    <record id="action_report_sri_ats" model="ir.actions.report">
+            <field name="name">ATS SRI</field>
+            <field name="model">account.report.sri_ats</field>
+            <field name="report_type">qweb-xml</field>
+            <field name="report_name">l10n_ec_reports.report_sri_ats</field>
+            <field name="report_file">l10n_ec_reports.report_sri_ats</field>
+    </record>
+</odoo>

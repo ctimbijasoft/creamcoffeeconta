@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="account_reports_sri" sequence="5"
+                  name="SRI" parent="account.menu_finance_reports"/>
+    </data>
+</odoo>

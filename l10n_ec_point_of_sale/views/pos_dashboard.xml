@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_pos_config_kanban_inherit" model="ir.ui.view">
+            <field name="name">pos.config.kanban.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='open_ui']" position="replace">
+                    <button t-if="record.pos_session_state.raw_value === 'opened'" class="btn btn-primary" name="open_ui" type="object">Reanudar</button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

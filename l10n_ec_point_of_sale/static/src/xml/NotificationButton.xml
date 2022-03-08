@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+
+  <t t-name="NotificationButton" owl="1">
+        <span class="order-button" t-on-click="toggleNotifications">
+            <i t-if="getNotification" class="fa fa-bell" style="color: yellow;"/>
+            <i t-else="!getNotification" class="fa fa-bell-slash"/>
+            <input id="notification" type="hidden" t-att-value="getNotification"/>
+        </span>
+    </t>
+
+</templates>

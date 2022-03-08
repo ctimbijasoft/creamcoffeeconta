@@ -1,0 +1,19 @@
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .floor-map .table {
+    margin: 20px;
+    display: inline-grid;
+    position: relative;
+
+  }
+
+  .floor-map {
+    .table {
+      top: 0 !important;
+      left: 0 !important;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+

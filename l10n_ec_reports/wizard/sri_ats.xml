@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_report_sri_ats_view" model="ir.ui.view">
+        <field name="name">ATS (Anexo Transaccional Simplificadoooo)</field>
+        <field name="model">account.report.sri_ats</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+            <group>
+                <field name="fiscal_year"/>
+                <field name="period"/>
+                <field name="include_invoices"/>
+
+            </group>
+            <footer>
+                <button name="check_report" string="Generar ATS" type="object" default_focus="1" class="oe_highlight"/>
+                <button string="Cancel" class="btn btn-secondary" special="cancel" />
+            </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_sri_ats_menu" model="ir.actions.act_window">
+        <field name="name">SRI-ATS</field>
+        <field name="res_model">account.report.sri_ats</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account_report_sri_ats_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_account" />
+    </record>
+
+    <menuitem id="menu_sri_ats_report"
+              name="ATS (Anexo Transaccional Simplificado)"
+              sequence="10"
+              action="action_account_sri_ats_menu"
+              parent="l10n_ec_reports.account_reports_sri"/>
+
+</odoo>

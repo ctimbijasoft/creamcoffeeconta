@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <!--            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/pos_demo.js"></script>-->
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/PrinterServices.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/PaymentScreen/PaymentScreen.js"></script>
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/FullScreenButton.js"></script>
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/LoginScreen.js"></script>
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/NotificationButton.js"></script>
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/CutPaperButton.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Misc/AbstractReceiptScreen.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/EscPosEnconder.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/PaymentScreen/PosCashBoxButton.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/multiprint.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/ClientListScreen/ClientListScreen.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/ClientListScreen/ClientDetailsEdit.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/OrderReceipt.js"></script>
+
+            <link rel="stylesheet" href="/l10n_ec_point_of_sale/static/src/scss/floor-screen.scss"/>
+            <link rel="stylesheet" href="/l10n_ec_point_of_sale/static/src/scss/pos_receipt.scss"/>
+
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/PaymentScreen/PosElectronicPayment.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/models.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/OrderManagementScreen/ControlButtons/ReprintReceiptButton.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Misc/Draggable.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/TicketScreen/TicketScreen.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/OrderManagementScreen/OrderRow.js"></script>
+             <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/SplitBillScreen/SplitBillScreen.js"></script>
+            <script type="text/javascript"
+                    src="/l10n_ec_point_of_sale/static/src/js/Screens/ProductScreen/ControlButtons/SubmitOrderButton.js"></script>
+            <script type="text/javascript" src="/l10n_ec_point_of_sale/static/src/js/Chrome.js"></script>
+
+
+        </xpath>
+    </template>
+</odoo>

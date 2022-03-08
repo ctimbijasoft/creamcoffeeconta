@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SplitBillScreen" t-inherit="pos_restaurant.SplitBillScreen" t-inherit-mode="extension" owl="1">
+      <xpath expr="//div[hasclass('pay-button')]" position="replace">
+            <div class="pay-button">
+                    <div class="button" t-on-click="proceed">
+                        <i class="fa fa-chevron-right" />
+                        <span> </span>
+                        <span>Aceptar</span>
+                    </div>
+            </div>
+      </xpath>
+    </t>
+
+</templates>

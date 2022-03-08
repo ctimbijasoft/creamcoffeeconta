@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_sri_ats">
+
+            <iva>
+                <TipoIDInformante>R</TipoIDInformante>
+                <IdInformante><t t-esc="env.company.vat"/></IdInformante>
+                <razonSocial><t t-esc="env.company.name"/></razonSocial>
+                <Anio><t t-esc="data['fiscal_year']"/></Anio>
+                <Mes><t t-esc="data['period']"/></Mes>
+                <numEstabRuc>001</numEstabRuc>
+                <totalVentas><t t-esc="'0.00'if total_ventas[0]==None else total_ventas[0]"/></totalVentas>
+                <codigoOperativo>IVA</codigoOperativo>
+                <compras>
+                    <detalleCompras t-foreach="in_invoices" t-as="line">
+                        <codSustento><t t-esc="line['invoice'].tax_support_id.code"/></codSustento>
+                        <tpIdProv>01</tpIdProv>
+                        <idProv><t t-esc="line['invoice'].partner_id.vat"/></idProv>
+                        <tipoComprobante><t t-esc="line['invoice'].l10n_latam_document_type_id.code"/></tipoComprobante>
+                        <fechaRegistro><t t-esc="line['invoice'].invoice_date.strftime('%d/%m/%Y')"/></fechaRegistro>
+                        <establecimiento><t
+                                t-esc="line['invoice'].l10n_latam_document_number.split('-')[0]"/></establecimiento>
+                        <puntoEmision><t
+                                t-esc="line['invoice'].l10n_latam_document_number.split('-')[1]"/></puntoEmision>
+                        <secuencial><t t-esc="line['invoice'].sequence_number"/></secuencial>
+                        <fechaEmision><t t-esc="line['invoice'].invoice_date.strftime('%d/%m/%Y')"/></fechaEmision>
+                        <autorizacion><t t-esc="line['invoice'].l10n_ec_edi_sri_access_key"/></autorizacion>
+                        <baseNoGraIva><t
+                                t-esc="format_float(line['tax']['base0']['total_base'],2)"/></baseNoGraIva>
+                        <baseImponible><t t-esc="format_float(line['invoice'].amount_untaxed,2)"/></baseImponible>
+                        <baseImpGrav><t t-esc="format_float(line['tax']['base12']['total_base'],2)"/></baseImpGrav>
+                        <baseImpExe>0.00</baseImpExe>
+                        <montoIce>0.00</montoIce>
+                        <montoIva><t t-esc="format_float(line['tax']['base12']['total_value'],2)"/></montoIva>
+                        <valRetBien10>0.00</valRetBien10>
+                        <valRetServ20>0.00</valRetServ20>
+                        <valorRetBienes>0.00</valorRetBienes>
+                        <valRetServ50>0.00</valRetServ50>
+                        <valorRetServicios>0.00</valorRetServicios>
+                        <valRetServ100>0.00</valRetServ100>
+                        <totbasesImpReemb>0.00</totbasesImpReemb>
+                        <pagoExterior>
+                            <pagoLocExt>01</pagoLocExt>
+                            <paisEfecPago>NA</paisEfecPago>
+                            <aplicConvDobTrib>NA</aplicConvDobTrib>
+                            <pagExtSujRetNorLeg>NA</pagExtSujRetNorLeg>
+                        </pagoExterior>
+                        <formasDePago>
+                            <formaPago><t t-esc="line['invoice'].sri_payment_method.payment_method_code"/></formaPago>
+                        </formasDePago>
+                        <!--<air>
+                            <detalleAir>
+                                <codRetAir>312</codRetAir>
+                                <baseImpAir>1.43</baseImpAir>
+                                <porcentajeAir>1.75</porcentajeAir>
+                                <valRetAir>0.03</valRetAir>
+                            </detalleAir>
+                        </air>
+                        <estabRetencion1>001</estabRetencion1>
+                        <ptoEmiRetencion1>002</ptoEmiRetencion1>
+                        <secRetencion1>0007874</secRetencion1>
+                        <autRetencion1>0000000000</autRetencion1>
+                        <fechaEmiRet1>01/10/2020</fechaEmiRet1>-->
+                    </detalleCompras>
+                </compras>
+                <ventas>
+                    <detalleVentas t-foreach="out_invoices" t-as="line">
+                        <tpIdCliente><t
+                                t-esc="'07' if line['partner_vat'] == '9999999999999' else str(line['partner_vat_code']).zfill(2)"/></tpIdCliente>
+                        <idCliente><t t-esc="line['partner_vat']"/></idCliente>
+                        <parteRelVtas t-if="line['partner_vat'] != '9999999999999'">NO</parteRelVtas>
+                        <tipoComprobante>18</tipoComprobante>
+                        <tipoCliente t-if="str(line['partner_vat_code']).zfill(2) == '06'">01</tipoCliente>
+                        <DenoCli t-if="str(line['partner_vat_code']).zfill(2) == '06'"><t t-esc="line['partner_name']"/></DenoCli>
+                        <tipoEmision>F</tipoEmision>
+                        <numeroComprobantes><t t-esc="line['num_invoices']"/></numeroComprobantes>
+                        <baseNoGraIva>0.00</baseNoGraIva>
+                        <baseImponible><t t-esc="format_float(line['base0'],2)"/></baseImponible>
+                        <baseImpGrav><t t-esc="format_float(line['base12'],2)"/></baseImpGrav>
+                        <montoIva><t t-esc="format_float(line['taxes12'],2)"/></montoIva>
+                        <montoIce>0.00</montoIce>
+                        <valorRetIva>0.00</valorRetIva>
+                        <valorRetRenta>0.00</valorRetRenta>
+                        <formasDePago>
+                            <formaPago t-foreach="line['payment_methods']" t-as="payment"><t
+                                    t-esc="payment['code']"/></formaPago>
+                        </formasDePago>
+                    </detalleVentas>
+                </ventas>
+                <ventasEstablecimiento>
+                    <ventaEst>
+                        <codEstab>001</codEstab>
+                        <ventasEstab><t t-esc="'0.00'if total_ventas[0]==None else total_ventas[0]"/></ventasEstab>
+                    </ventaEst>
+                </ventasEstablecimiento>
+                <exportaciones>
+                </exportaciones>
+                <recap></recap>
+                <fideicomisos></fideicomisos>
+                <anulados>
+                    <!--<detalleAnulados>
+                        <tipoComprobante>18</tipoComprobante>
+                        <establecimiento>001</establecimiento>
+                        <puntoEmision>003</puntoEmision>
+                        <secuencialInicio>6931</secuencialInicio>
+                        <secuencialFin>6931</secuencialFin>
+                        <autorizacion>0000000000</autorizacion>
+                    </detalleAnulados>-->
+                </anulados>
+                <rendFinancieros>
+                </rendFinancieros>
+            </iva>
+        </template>
+    </data>
+</odoo>
